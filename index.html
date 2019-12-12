@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/loader.css">
+    <title>API Volt - PHP Sample</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-navbar">
+        <a class="navbar-brand" href="#">
+            <img src="assets/navlogo.png" alt="">
+        </a>
+        <div class="lastup text-center text-white">
+            <h5><strong>Última atualização:</strong> <span id="lastupdate"></span></h5>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row margin10">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5><i class="fas fa-ethernet"></i> Interface Ethernet</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-bordered table-striped">
+                            <tr>
+                                <td class="td30"><strong>Host:</strong></td>
+                                <td><span id="host"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>MAC Adress:</strong></td>
+                                <td><span id="mac"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>IP:</strong></td>
+                                <td><span id="ip"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mascara de Subrede:</strong></td>
+                                <td><span id="msk"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gateway:</strong></td>
+                                <td><span id="gw"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>DNS Primário:</strong></td>
+                                <td><span id="dns1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>DNS Secundário:</strong></td>
+                                <td><span id="dns2"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>DHCP:</strong></td>
+                                <td><span id="dhcp"></span></td>
+                            </tr>
+                        </table>
+                        <div class="float-right">
+                            <button class="btn btn-success" id="btnmodaleth"><i class="fas fa-ethernet"></i>
+                                Configurar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5><i class="fas fa-plug"></i> Status das Tomadas</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="btncontainer">
+                            <ul id="portlist"></ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                        <div class="text-center">
+                            <button class="btn btn-sm btn-success" id="haball">Habilitar Todas</button>
+                            <button class="btn btn-sm btn-secondary" id="desaball">Desabilitar Todas</button>
+                            <button class="btn btn-sm btn-primary" id="configtomada">Configurar Tomada</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5><i class="fas fa-info-circle"></i> Status dos Sensores</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="sensorcontainer">
+
+                            <div id="card1" class="cardsensor bg-blue-dark">
+                                <div class="cardicon">
+                                    <i class="fas fa-temperature-high"></i>
+                                </div>
+
+                                <div class="cardinfo">
+                                    <p>Temperatura</p>
+                                    <h3 id="vtemp"></h3>
+                                </div>
+                            </div>
+
+                            <div id="card2" class="cardsensor bg-blue2">
+                                <div class="cardicon">
+                                    <i class="fas fa-stopwatch"></i>
+                                </div>
+
+                                <div class="cardinfo">
+                                    <p>UPTIME</p>
+                                    <h3 id="vuptime"></h3>
+                                </div>
+                            </div>
+
+                            <div id="card3" class="cardsensor bg-brow">
+                                <div class="cardicon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+
+                                <div class="cardinfo">
+                                    <p>Relógio</p>
+                                    <h3 id="vrelogio"></h3>
+                                </div>
+                            </div>
+
+                            <div id="card3" class="cardsensor bg-caviar-dark">
+                                <div class="cardicon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+
+                                <div class="cardinfo">
+                                    <p>Calendário</p>
+                                    <h3 id="vdata"></h3>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row margin10">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5><i class="fas fa-dog"></i> Watchdog</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-bordered table-striped">
+                            <tr>
+                                <td colspan="2" class="text-center bg-secondary text-white">Parâmetros Watchdog</td>
+                            </tr>
+                            <tr>
+                                <td class="td40"><strong>Status:</strong></td>
+                                <td><span id="pstatus"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Intervalo Varredura:</strong></td>
+                                <td><span id="pvarredura"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Limite Ping:</strong></td>
+                                <td><span id="pping"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tempo Rearme:</strong></td>
+                                <td><span id="prearme"></span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center bg-secondary text-white">Status Watchdog</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Varredura:</strong></td>
+                                <td><span id="svarredura"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tomada Atual:</strong></td>
+                                <td><span id="stomada"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>IP:</strong></td>
+                                <td><span id="sip"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contador Ping:</strong></td>
+                                <td><span id="sping"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Latência[ms]:</strong></td>
+                                <td><span id="slatencia"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Média Latência[ms]:</strong></td>
+                                <td><span id="smlatencia"></span></td>
+                            </tr>
+                        </table>
+                       
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- Bloco dos diálogos Modal -->
+
+    <!-- Modal de configuração da Ethernet -->
+    <div id="dlgeth" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgeth-title" aria-hidden="true"
+        data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dlgeth-title"><i class="fas fa-ethernet"></i> Configuração da Interface
+                        Ethernet</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmeth">
+                        <div class="form-group">
+                            <label for="txtmac">MAC</label>
+                            <input id="txtmac" class="form-control" type="text" readonly>
+
+                            <label for="txthost">Host</label>
+                            <input id="txthost" class="form-control" maxlength="15" type="text"
+                                onkeyup="this.value = this.value.toUpperCase();" required>
+
+                            <label for="txtip">IP</label>
+                            <input id="txtip" class="form-control" maxlength="15"
+                                pattern="((^|\.)((25[0-5]_*)|(2[0-4]\d_*)|(1\d\d_*)|([1-9]?\d_*))){4}_*$" type="text"
+                                required>
+
+                            <label for="txtmask">Máscara Subrede</label>
+                            <input id="txtmask" class="form-control" maxlength="15"
+                                pattern="((^|\.)((25[0-5]_*)|(2[0-4]\d_*)|(1\d\d_*)|([1-9]?\d_*))){4}_*$" type="text"
+                                required>
+
+                            <label for="txtgtw">Gateway</label>
+                            <input id="txtgtw" class="form-control" maxlength="15"
+                                pattern="((^|\.)((25[0-5]_*)|(2[0-4]\d_*)|(1\d\d_*)|([1-9]?\d_*))){4}_*$" type="text"
+                                required>
+
+                            <label for="txtdns1">DNS Primário</label>
+                            <input id="txtdns1" class="form-control" maxlength="15"
+                                pattern="((^|\.)((25[0-5]_*)|(2[0-4]\d_*)|(1\d\d_*)|([1-9]?\d_*))){4}_*$" type="text"
+                                required>
+
+                            <label for="txtdns2">DNS Secundário</label>
+                            <input id="txtdns2" class="form-control" maxlength="15"
+                                pattern="((^|\.)((25[0-5]_*)|(2[0-4]\d_*)|(1\d\d_*)|([1-9]?\d_*))){4}_*$" type="text"
+                                required>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-4 d-flex justify-content-center">
+                                <button type="button" id="btnupdateeth" class="btn btn-sm btn-primary">Gravar
+                                    Configurações</button>
+                            </div>
+                            <div class="col-sm-4 d-flex justify-content-center">
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal configuração da tomada -->
+    <div id="dlgtomada" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dlgtomada-title"
+        aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dlgtomada-title"><i class="fas fa-plug"></i> Configuração da Tomada</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmeth">
+                        <div class="form-group">
+                            <label for="txttomada">Tomada</label>
+                            <input id="txttomada" min="1" max="10" value="1" class="form-control" type="number"
+                                required>
+
+                            <label for="txtident">Identificação</label>
+                            <input id="txtident" class="form-control" maxlength="14"
+                                onkeyup="this.value = this.value.toUpperCase();" type="text" required>
+
+                        </div>
+
+                        <div class="form-check">
+                            <input id="chkentomada" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="chkentomada">Habilitar Tomada</label>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-4 d-flex justify-content-center">
+                                <button type="button" id="btnupdatetomada" class="btn btn-sm btn-primary">Gravar
+                                    Configurações</button>
+                            </div>
+                            <div class="col-sm-4 d-flex justify-content-center">
+                                <button type="button" class="btn btn-sm btn-secondary"
+                                    data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script src="/js/moment.js"></script>
+
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

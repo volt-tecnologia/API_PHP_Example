@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body{
+    font-family: 'Robot', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+div.card div.card-header i.fas{
+    font-size: 18px;
+}
+
+#btncontainer{
+    display: flex;
+    width: 100%;
+}
+
+#portlist{
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#portlist li{
+    /*flex: 1;*/
+    height: 80px;
+    list-style: none;
+    border: 0;
+    border-radius: 5px;
+    min-width: 150px;
+    margin: 5px;
+    background-color: #6c757d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transition: all 0.2s;
+    flex-grow: 0;
+    cursor: pointer;
+}
+
+#portlist li h3{
+    margin-top: 25px;
+    color: #fff;
+    font-size: 11px;
+
+}
+
+#portlist li p{
+
+    color: #fff;
+    margin-bottom: 20px;
+
+}
+
+
+#portlist li hr{
+    border: 0;
+    border-bottom: 1px solid #fafafa;
+    width: 80%;   
+    color: #fafafa;
+}
+
+
+.margin10{
+    margin-top: 10px;
+}
+
+.td20{
+    width: 20%;
+}
+
+.td30{
+    width: 30%;
+}
+
+.td40{
+    width: 40%;
+}
+
+.td50{
+    width: 50%;
+}
+
+.cardsize{
+    margin: auto;
+    margin-top: 50px;
+    width: 800px;
+}
+
+.lastup{
+    padding: 10px;
+    
+}
+
+.lastup h5{
+    font-size: 14px;
+}
+
+
+
+.bg-navbar{
+    background-color: #61b2a7;
+}
+
+#sensorcontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cardsensor{
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    width: 250px;
+    height: 100px;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.cardicon{
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.cardinfo{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 180px;
+    height: 80px;
+}
+
+.cardinfo p{
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
+
+.cardinfo h3{
+    color: #ffffff;
+    font-weight: bold;
+
+}
+
+.bg-caviar{
+    
+background-color: coral;
+}
+
+.bg-blue1{
+    background-color: #63c2de;
+}
+
+.bg-blue2{
+    background-color: #20a8da;
+}
+
+.bg-blue-dark{
+    background-color: #3c599b;
+}
+
+.bg-yellow{
+    background-color: #f8cb00;
+}
+
+.bg-caviar-dark{
+    background-color: #f66e6a;
+}
+
+.bg-brow{
+    background-color: #bb4a3a;
+}
